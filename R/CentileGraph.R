@@ -7,12 +7,9 @@ check_centilegraph <- function(object){
   if(length(object@cycle_day) != length(object@value)){
     msg <- "Cycle days and values must be of same length."
     errors <- c(errors,msg)
-
   }
 
-
   if(length(errors) == 0) TRUE else errors
-
 
 }
 
@@ -33,4 +30,22 @@ createCentileGraph <- function(cycle_day,value){
 
   new("CentileGraph",cycle_day=cycle_day,value=value,processed=list())
 
+}
+
+
+#' calculateCentile
+#' This function calculates centiles from the days of cycle and values stores in object.
+#'
+#' @param obj CentileGraph object
+#'
+#' @return CentileGraph object with centiles.
+#' @export
+#'
+calculateCentile <- function(obj){
+
+  this.centiles <- obj@value
+
+  obj@processed[["Centiles"]] <- this.centiles
+
+  return(obj)
 }
