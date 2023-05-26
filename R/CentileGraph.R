@@ -1,5 +1,5 @@
 
-setClass("CentileGraph", slots=list(cycle_day="numeric",value="numeric"))
+setClass("CentileGraph", slots=list(cycle_day="numeric",value="numeric"),processed="list")
 
 #' Create a CentileGraph object
 #'
