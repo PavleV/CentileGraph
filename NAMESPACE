@@ -3,3 +3,4 @@
 export(calculateCentile)
 export(calculateQuantiles)
 export(createCentileGraph)
+export(plotCentiles)

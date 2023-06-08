@@ -102,3 +102,44 @@ funbet.ext<-function(mytab,mycol=c("Qupath"),LH.start=6,LH.end=11,resolution.wid
 
 
 
+
+
+plotCentile.FUN <- function(obj = qupath, LH.start=6,LH.end=11, resolution.width=5, quantiles=c(0,0.25,0.50,0.75,1), ylims = c(0,0.5)){
+
+  data.to.plot <- data.frame(quantile=numeric(), day = numeric(), value=numeric())
+
+
+  for(i in quantiles){
+
+    spline.resolution <- length(LH.start:LH.end) * resolution.width
+
+    spline.days <- spline(obj@quantiles$value[obj@quantiles$quantile == i], n = spline.resolution)$x
+    spline.values <- spline(obj@quantiles$value[obj@quantiles$quantile == i], n = spline.resolution)$y
+
+    data.to.plot <- rbind(data.to.plot, data.frame(quantile=rep(i,length(spline.days)), day = spline.days, value=spline.values))
+
+    }
+
+
+    p1 <-  ggplot2::ggplot()+
+      ggplot2::geom_line(data=subset(data.to.plot, quantile == 0.5), ggplot2::aes(day,value)) +
+      ggplot2::geom_line(data=subset(data.to.plot, quantile == 0.25), ggplot2::aes(day,value),linetype="dashed") +
+      ggplot2::geom_line(data=subset(data.to.plot, quantile == 0.75), ggplot2::aes(day,value),linetype="dashed") +
+
+      #ggplot2::geom_ribbon(data=resmat2, ggplot2::aes(x=xnum,ymin=per75,ymax=0.5, fill="1) >75% CI"),alpha=0.3)+
+      #ggplot2::geom_ribbon(data=resmat2, ggplot2::aes(x=xnum,ymin=floor(min(resmat2$per25)),ymax=per25, fill="3) <25% CI"),alpha=0.3)+
+      #ggplot2::geom_ribbon(data=resmat2, ggplot2::aes(x=xnum,ymin=per25,ymax=per75, fill="2) 25-75% CI"),alpha=0.3)+
+
+      ggplot2::xlab("Day of cycle")+
+      ggplot2::scale_x_continuous(breaks=c(0,20,40,60,80,100,120,140),labels=c("5","6","7","8","9","10","11","12"))+
+      ggplot2::ylim(ylims[1],ylims[2])+
+      ggplot2::theme_bw()+
+      ggplot2::theme(legend.title = ggplot2::element_blank())
+
+
+
+  return(p1) # returns ggplot2 object
+
+}
+
+

@@ -80,3 +80,35 @@ calculateQuantiles <- function(obj, days_of_cycle=6:12, quantiles=c(0,0.25,0.5,0
 
 }
 
+
+
+#' Title
+#'
+#' @param obj CentileGraph object after quantile calculation
+#' @param file Path to location where pdf will be saved. If blank, ggplot2 object will be returned.
+#' @param days_of_cycle Vector of days of cycle to plot.
+#' @param assay Name of value column.
+#' @param width Width of pdf if saving to file.
+#' @param height Height of pdf if saving to file.
+#'
+#' @return ggplot2 object or PDF file generated.
+#' @export
+#'
+#' @examples plotCentiles(qupath,"test.pdf")
+plotCentiles <- function(obj, file=NULL, days_of_cycle = 6:12, assay, width = 6, height = 6){
+
+  if(!is.null(file)){
+
+    pdf(file = file, width = width, height = height)
+    print(plotCentile.FUN(obj))
+    dev.off()
+
+  }
+
+  if(is.null(file)){
+
+    return(plotCentile.FUN(obj))
+
+  }
+
+}
