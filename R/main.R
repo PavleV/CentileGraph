@@ -1,17 +1,17 @@
 
 # load data
 
-uNK_Qupath_230525 <- read.delim("~/Documents/Rprojects/Paul_paired_biopsy_230119/uNK_Qupath_230525.txt")
+#uNK_Qupath_230525 <- read.delim("~/Documents/Rprojects/Paul_paired_biopsy_230119/uNK_Qupath_230525.txt")
 
-qupath_edit <- uNK_Qupath_230525
-qupath_edit$Qupath <- plyr::mapvalues(qupath_edit$Qupath, from=c(0,100), to=c(1,99.9))
+#qupath_edit <- uNK_Qupath_230525
+#qupath_edit$Qupath <- plyr::mapvalues(qupath_edit$Qupath, from=c(0,100), to=c(1,99.9))
 
-qupath <- createCentileGraph(cycle_day = qupath_edit$day_of_cycle, value=qupath_edit$Qupath/100)
-qupath <- calculateQuantiles(qupath)
+#qupath <- createCentileGraph(cycle_day = qupath_edit$day_of_cycle, value=qupath_edit$Qupath/100)
+#qupath <- calculateQuantiles(qupath)
 
 
-qupath_edit$Qupath <- qupath_edit$Qupath/100
-funbet.ext(as.data.frame(qupath_edit),mycol="Qupath",,LH.start=5,LH.end=12)
+#qupath_edit$Qupath <- qupath_edit$Qupath/100
+#funbet.ext(as.data.frame(qupath_edit),mycol="Qupath",,LH.start=5,LH.end=12)
 
 
 
