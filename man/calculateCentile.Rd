@@ -2,18 +2,18 @@
 % Please edit documentation in R/CentileGraph.R
 \name{calculateCentile}
 \alias{calculateCentile}
-\title{calculateCentile
-This function calculates centiles from the days of cycle and values stores in object.}
+\title{This function calculates centiles from the days of cycle and values stores in object.}
 \usage{
 calculateCentile(obj)
 }
 \arguments{
 \item{obj}{CentileGraph object}
+
+\item{model}{Distribution to calculate centiles from. Can be "beta" or "normal". Default "beta".}
 }
 \value{
 CentileGraph object with centiles.
 }
 \description{
-calculateCentile
 This function calculates centiles from the days of cycle and values stores in object.
 }
